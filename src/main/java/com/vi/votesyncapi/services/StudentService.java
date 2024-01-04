@@ -56,8 +56,11 @@ public class StudentService implements Service<Student,String> {
             studentDao.addStudent(entity);
             return Response.status(Response.Status.CREATED).build();
         }catch (DatabaseConnectionException e){
-            throw new DuplicateDataException("Duplicate data : " + entity.getStudentId()+" already exist");
-        }
+            if(e.getMessage().contains("duplicate")){
+                throw new DuplicateDataException("Duplicate data : " + entity.getStudentId()+" already exist");
+            }
+            throw new DatabaseConnectionException(e.getMessage());
+         }
         catch (Exception e){
             throw new DatabaseConnectionException(e.getMessage());
         }

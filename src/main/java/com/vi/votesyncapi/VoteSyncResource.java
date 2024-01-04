@@ -8,11 +8,11 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 
-@Path("/hi")
+@Path("welcome")
 public class VoteSyncResource {
     @GET
 
     public String hello( ) {
-        return "Fuck you";
+        return "welcome";
     }
 }
