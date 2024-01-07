@@ -8,7 +8,8 @@ tasks:
   - init: ./mvnw install -DskipTests=false
 ports:
   - port: 8081
-    onOpen: open-preview
+    onOpen: open-browser
+    visibility: public
 
 
 image:
