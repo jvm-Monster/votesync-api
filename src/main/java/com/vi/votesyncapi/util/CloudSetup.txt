@@ -1,0 +1,61 @@
+package com.vi.votesyncapi.util;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Properties;
+
+public class CloudSetup {
+
+    public static void run() {
+
+        String configFileLocation = "/workspace/votesync-api/votesync-config.properties";
+
+        if (!configFileExists(configFileLocation)) {
+            createConfigFile(configFileLocation);
+            setEnvironmentVariable(configFileLocation);
+        } else {
+            System.out.println("Configuration file already exists. Skipping creation.");
+        }
+    }
+
+    public static boolean configFileExists(String configFileLocation) {
+        File configFile = new File(configFileLocation);
+        return configFile.exists();
+    }
+
+    private static void createConfigFile(String configFileLocation) {
+        try (FileWriter writer = new FileWriter(configFileLocation)) {
+            Properties properties = new Properties();
+            properties.setProperty("DB_URL", "jdbc:mysql://localhost:3306/votesync_db2");
+            properties.setProperty("DB_DRIVER", "com.mysql.cj.jdbc.Driver");
+            properties.setProperty("DB_USER", "root");
+            properties.setProperty("DB_PASSWORD", "password");
+            properties.setProperty("DB_PERSISTENT_UNIT","votesync_pu");
+            properties.store(writer, "Database Configuration");
+
+            System.out.println("Configuration file created successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void setEnvironmentVariable(String configFileLocation) {
+        String command = String.format("echo 'export VOTESYNC_CONFIG_FILE_PATH=%s' >> ~/.bashrc", configFileLocation);
+
+        try {
+            ProcessBuilder processBuilder = new ProcessBuilder("bash", "-c", command);
+            Process process = processBuilder.start();
+
+            int exitCode = process.waitFor();
+
+            if (exitCode == 0) {
+                System.out.println("Environment variable set successfully.");
+            } else {
+                System.err.println("Failed to set environment variable.");
+            }
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}

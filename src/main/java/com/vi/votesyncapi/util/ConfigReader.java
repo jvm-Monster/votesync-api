@@ -8,12 +8,19 @@ import java.util.Map;
 import java.util.Properties;
 
 public class ConfigReader {
-    String voteSyncDatabaseConfigFileLocation = System.getenv("VOTESYNC_CONFIG_FILE_PATH");
 
-    public Map<String,String> getDatabasePropertyFile() {
-        System.out.println(voteSyncDatabaseConfigFileLocation);
+    String voteSyncDatabaseConfigFileLocation = System.getenv("VOTESYNC_CONFIG_FILE_PATH");
+    String configFileName = "/votesync-config.properties";
+
+    public Map<String, String> getDatabasePropertyFile() {
+        String getConfigFilePath = System.getProperty("user.home");
+        System.out.println(getConfigFilePath);
+        if (voteSyncDatabaseConfigFileLocation == null || voteSyncDatabaseConfigFileLocation.isEmpty()) {
+            voteSyncDatabaseConfigFileLocation = getConfigFilePath.concat(configFileName);
+        }
         Properties properties = new Properties();
-        Map<String,String> propertyValues = null;
+        Map<String, String> propertyValues = null;
+
         try (InputStream input = new FileInputStream(voteSyncDatabaseConfigFileLocation)) {
             properties.load(input);
 
@@ -22,11 +29,11 @@ public class ConfigReader {
             String dbDriver = properties.getProperty("DB_DRIVER");
             String dbUser = properties.getProperty("DB_USER");
             String dbPassword = properties.getProperty("DB_PASSWORD");
-            propertyValues=new HashMap<>();
-            propertyValues.put("DB_URL",dbUrl);
-            propertyValues.put("DB_DRIVER",dbDriver);
-            propertyValues.put("DB_USER",dbUser);
-            propertyValues.put("DB_PASSWORD",dbPassword);
+            propertyValues = new HashMap<>();
+            propertyValues.put("DB_URL", dbUrl);
+            propertyValues.put("DB_DRIVER", dbDriver);
+            propertyValues.put("DB_USER", dbUser);
+            propertyValues.put("DB_PASSWORD", dbPassword);
             return propertyValues;
 
         } catch (IOException e) {

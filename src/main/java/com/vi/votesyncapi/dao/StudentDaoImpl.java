@@ -45,6 +45,8 @@ public class StudentDaoImpl implements StudentDao {
         DatabaseManager databaseManager = new DatabaseManager();
 
         String toUpperCase = ConvertToUpperCaseUtil.convertToUpperCase(student.getStudentId());
+        System.out.println(toUpperCase);
+
         student.setStudentId(toUpperCase);
 
         databaseManager.executeInTransaction(() -> {

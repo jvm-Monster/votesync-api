@@ -10,6 +10,7 @@ import java.util.function.Supplier;
 
 public class DatabaseManager {
 
+
     public EntityManager entityManager;
     public EntityManagerFactory entityManagerFactory;
     public EntityTransaction entityTransaction;
