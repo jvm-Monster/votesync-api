@@ -1,19 +1,13 @@
 package com.vi.votesyncapi.services;
 
-import com.vi.votesyncapi.dao.StudentDaoImpl;
-import com.vi.votesyncapi.daointerfaces.SchoolDao;
 import com.vi.votesyncapi.daointerfaces.StudentDao;
-import com.vi.votesyncapi.dto.StudentDto;
 import com.vi.votesyncapi.exception.DatabaseConnectionException;
 import com.vi.votesyncapi.exception.DuplicateDataException;
-import com.vi.votesyncapi.exception.InvalidRequestException;
 import com.vi.votesyncapi.exception.ResourceNotFoundException;
-import com.vi.votesyncapi.mapper.SchoolMapper;
 import com.vi.votesyncapi.mapper.StudentMapper;
 import com.vi.votesyncapi.model.Student;
 import com.vi.votesyncapi.services_interfaces.Service;
-import com.vi.votesyncapi.util.ResourceBeanParam;
-import jakarta.inject.Inject;
+import com.vi.votesyncapi.beanparamresources.ResourceBeanParam;
 import jakarta.ws.rs.core.Response;
 
 public class StudentService implements Service<Student,String> {

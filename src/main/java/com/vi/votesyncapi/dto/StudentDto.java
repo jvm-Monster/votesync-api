@@ -10,7 +10,6 @@ public record StudentDto(
         String studentId,
         String studentName,
         String studentEmail,
-        String studentPassword,
         SchoolDto schoolDto
 ) {
 }

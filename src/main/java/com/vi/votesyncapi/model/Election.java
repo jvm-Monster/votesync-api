@@ -11,8 +11,8 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"electionType", "electionName", "school_id"}))
+@Entity
 public class Election {
     @Id
     String electionId;
@@ -22,9 +22,9 @@ public class Election {
     String electionEndDate;
     @Enumerated(EnumType.STRING)
     ElectionStatus electionStatus;
-   /* @ManyToOne
+    @ManyToOne
     @JoinColumn(name = "school_id")
-    School school;*/
+    School school;
 
     public Election(String electionId, String electionType, String electionName, String electionStartDate, String electionEndDate) {
         this.electionId = electionId;

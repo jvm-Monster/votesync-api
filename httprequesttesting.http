@@ -1,0 +1,5 @@
+GET  http://172.28.151.123:8080/votesync/api/v1/elections/candidates?school=AU&election-type=ausa&election-name=Presidential
+
+###
+GET http://172.28.151.123:8080/votesync/api/hi
+

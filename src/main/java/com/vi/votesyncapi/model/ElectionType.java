@@ -12,13 +12,14 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-@Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"electionType", "school_id"}))
+@Entity
 public class ElectionType {
     @Id
     private String electionType;
 
     @OneToMany(mappedBy = "electionType", cascade = CascadeType.ALL)
+    @ToString.Exclude
     private List<Election> elections;
 
     @ManyToOne

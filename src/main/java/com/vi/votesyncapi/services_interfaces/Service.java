@@ -1,8 +1,6 @@
 package com.vi.votesyncapi.services_interfaces;
 
-import com.vi.votesyncapi.util.ResourceBeanParam;
-import jakarta.ws.rs.core.Response;
-
+import com.vi.votesyncapi.beanparamresources.ResourceBeanParam;
 import jakarta.ws.rs.core.Response;
 
 public interface Service<T, ID> {

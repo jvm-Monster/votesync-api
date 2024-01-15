@@ -1,6 +1,6 @@
 package com.vi.votesyncapi.helperclass;
 
-import com.vi.votesyncapi.util.ResourceBeanParam;
+import com.vi.votesyncapi.beanparamresources.ResourceBeanParam;
 
 public class CheckDataSummary{
 

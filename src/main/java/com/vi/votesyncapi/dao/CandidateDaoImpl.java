@@ -1,12 +1,14 @@
 package com.vi.votesyncapi.dao;
 
+import com.vi.votesyncapi.beanparamresources.CandidateBeanQueryParam;
 import com.vi.votesyncapi.daointerfaces.CandidateDao;
 import com.vi.votesyncapi.model.Candidate;
-import com.vi.votesyncapi.model.ElectionType;
-import com.vi.votesyncapi.model.School;
+import com.vi.votesyncapi.model.Student;
 import com.vi.votesyncapi.util.DatabaseManager;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CandidateDaoImpl implements CandidateDao {
@@ -58,6 +60,52 @@ public class CandidateDaoImpl implements CandidateDao {
         },"");
     }
 
+    @Override
+    public List<Candidate> getCandidateOnQueryParam(CandidateBeanQueryParam candidateBeanQueryParam) {
+        String school = candidateBeanQueryParam.getSchool();
+        String electionType = candidateBeanQueryParam.getElectionType();
+        String electionName = candidateBeanQueryParam.getElectionName();
+
+        return databaseManager.executeInTransaction(() -> {
+            TypedQuery<Candidate> candidates = databaseManager.entityManager.createQuery(
+                    "SELECT c " +
+                            "FROM Candidate c " +
+                            "WHERE c.school.schoolId = :schoolId " +
+                            "AND c.election.electionType=:electionType " +
+                            "AND c.election.electionName=:electionName",
+                    Candidate.class
+            );
+
+            candidates.setParameter("schoolId", school);
+            candidates.setParameter("electionType",electionType);
+            candidates.setParameter("electionName",electionName);
+
+            System.out.println("Result: " + candidates.getResultList());
+
+            return candidates.getResultList();
+        }, "Error getting Candidate");
+    }
+    /*Query query = databaseManager.entityManager.createQuery(
+            "SELECT c.candidateId,c.student.studentName FROM Candidate c " +
+                    " WHERE c.school.schoolId=:schoolId and c.election.electionType=:electType and c.election.electionName=:electName"
+            ,Object[].class);
+            query.setParameter("schoolId",school);
+            query.setParameter("electType",electionType);
+            query.setParameter("electName",electionName);
+
+    List<Object[]> r= query.getResultList();
+    List<Candidate> candidateList = new ArrayList<>();
+            for (Object[] or:r) {
+        Candidate candidate = new Candidate();
+        candidate.setCandidateId((Long)or[0]);
+        Student student = new Student();
+        student.setStudentName((String)or[1]);
+        candidate.setStudent(student);
+        candidateList.add(candidate);
+    }
+            return candidateList;
+*/
+
     // Method to generate custom candidateId
     private int generateCandidateId(Candidate candidate) {
         // Logic to generate a unique candidateId based on school abbreviation and election type
@@ -68,4 +116,6 @@ public class CandidateDaoImpl implements CandidateDao {
         // Convert the customId to an integer, you can use a more sophisticated logic if needed
         return customId.hashCode();
     }
+
+
 }

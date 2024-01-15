@@ -1,16 +1,11 @@
 package com.vi.votesyncapi.services;
 
-import com.vi.votesyncapi.dao.SchoolDaoImpl;
-import com.vi.votesyncapi.dao.StudentDaoImpl;
 import com.vi.votesyncapi.daointerfaces.SchoolDao;
-import com.vi.votesyncapi.daointerfaces.StudentDao;
 import com.vi.votesyncapi.dto.SchoolDto;
 import com.vi.votesyncapi.mapper.SchoolMapper;
 import com.vi.votesyncapi.model.School;
-import com.vi.votesyncapi.model.Student;
 import com.vi.votesyncapi.services_interfaces.Service;
-import com.vi.votesyncapi.util.ResourceBeanParam;
-import jakarta.inject.Inject;
+import com.vi.votesyncapi.beanparamresources.ResourceBeanParam;
 import jakarta.ws.rs.core.Response;
 
 import java.util.List;

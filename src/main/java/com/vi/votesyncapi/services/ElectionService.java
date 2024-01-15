@@ -20,4 +20,15 @@ public class ElectionService {
             return  Response.status(Response.Status.BAD_REQUEST).entity("BAD REQUEST: could not get election").build();
         }
     }
+
+    public Response getElectionTypes() {
+        try{
+            ElectionTypeDaoImpl electionTypeDao = new ElectionTypeDaoImpl();
+            List<String> electionTypes = electionTypeDao.getElectionTypes();
+            System.out.println(electionTypes);
+            return Response.status(Response.Status.OK).entity(electionTypes).build();
+        }catch (Exception e){
+            return  Response.status(Response.Status.BAD_REQUEST).entity("BAD REQUEST: could not get election").build();
+        }
+    }
 }

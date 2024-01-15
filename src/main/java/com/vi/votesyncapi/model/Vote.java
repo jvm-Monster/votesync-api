@@ -9,8 +9,8 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"student_id", "school_id", "election_id"}))
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"student_id", "candidate_id", "school_id", "election_id"}))
 public class Vote {
     @Id
     private String voteId;

@@ -5,8 +5,7 @@ import com.vi.votesyncapi.mapper.SchoolMapper;
 import com.vi.votesyncapi.model.School;
 import com.vi.votesyncapi.services.SchoolService;
 import com.vi.votesyncapi.services_interfaces.Service;
-import com.vi.votesyncapi.util.ResourceBeanParam;
-import jakarta.inject.Inject;
+import com.vi.votesyncapi.beanparamresources.ResourceBeanParam;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
 
@@ -24,8 +23,8 @@ public class SchoolResourceV1 {
         return  service.getAllEntitiesService(null);
     }
     @GET
-    @Path("/{schoolId}")
-    public Response getSchool(@PathParam("schoolId")String schoolId, @BeanParam ResourceBeanParam resourceBeanParam){
+    @Path("/{school-id}")
+    public Response getSchool(@PathParam("school-id")String schoolId, @BeanParam ResourceBeanParam resourceBeanParam){
         return service.getEntityService(schoolId,resourceBeanParam);
     }
 
@@ -40,8 +39,8 @@ public class SchoolResourceV1 {
     }
 
     @DELETE
-    @Path("/{schoolId}")
-    public Response updateSchool(@PathParam("schoolId") String schoolId){
+    @Path("/{school-id}")
+    public Response updateSchool(@PathParam("school-id") String schoolId){
         return service.deleteEntityService(schoolId);
     }
 

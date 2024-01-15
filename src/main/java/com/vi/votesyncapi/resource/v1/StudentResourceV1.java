@@ -19,8 +19,8 @@ public class StudentResourceV1 {
     Service<Student,String> service = new StudentService(new StudentDaoImpl(), StudentMapper.INSTANCE);
 
     @GET
-    @Path("/{studentId}")
-    public Response retrieveStudent(@PathParam("studentId") String studentId) {
+    @Path("/{student-id}")
+    public Response retrieveStudent(@PathParam("student-id") String studentId) {
         return service.getEntityService(studentId,null);
     }
     @POST
@@ -32,8 +32,8 @@ public class StudentResourceV1 {
     }
 
     @DELETE
-    @Path("/{studentId}")
-    public Response deleteStudent(@PathParam("studentId") String studentId) {
+    @Path("/{student-id}")
+    public Response deleteStudent(@PathParam("student-id") String studentId) {
         return service.deleteEntityService(studentId);
     }
 }

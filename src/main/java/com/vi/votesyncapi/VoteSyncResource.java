@@ -13,6 +13,6 @@ public class VoteSyncResource {
     @GET
 
     public String hello( ) {
-        return "Fuck you";
+        return "Ok";
     }
 }

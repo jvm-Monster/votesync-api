@@ -10,8 +10,8 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"student_id", "school_id"}))
+@Entity
 public class Candidate {
     @Id
     long candidateId;

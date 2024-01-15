@@ -1,5 +1,6 @@
 package com.vi.votesyncapi.daointerfaces;
 
+import com.vi.votesyncapi.beanparamresources.CandidateBeanQueryParam;
 import com.vi.votesyncapi.model.Candidate;
 import com.vi.votesyncapi.model.Student;
 
@@ -14,4 +15,5 @@ public interface CandidateDao {
     List<Candidate> getCandidates();
     void removeCandidate(int candidate);// remove candidate
     void updateCandidate(Candidate candidate);// update candidate
+    List<Candidate> getCandidateOnQueryParam(CandidateBeanQueryParam candidateBeanQueryParam);
 }

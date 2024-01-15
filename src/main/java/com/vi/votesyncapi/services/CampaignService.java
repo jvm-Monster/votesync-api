@@ -6,12 +6,10 @@ import com.vi.votesyncapi.exception.ResourceNotFoundException;
 import com.vi.votesyncapi.mapper.CampaignMapper;
 import com.vi.votesyncapi.model.Campaign;
 import com.vi.votesyncapi.services_interfaces.Service;
-import com.vi.votesyncapi.util.ResourceBeanParam;
+import com.vi.votesyncapi.beanparamresources.ResourceBeanParam;
 import jakarta.ws.rs.core.Response;
 
 import java.util.List;
-
-import static com.vi.votesyncapi.helperclass.CheckDataSummary.checkDataSummary;
 
 public class CampaignService implements Service<Campaign,String> {
     final CampaignDao campaignDao;
